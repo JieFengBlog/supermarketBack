@@ -1,7 +1,5 @@
 package com.czxy.back.dao;
 
-import com.czxy.back.bean.Product;
-
 public interface ProductDao {
 
     /**

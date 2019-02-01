@@ -1,7 +1,6 @@
 package com.czxy.back.dao;
 
 import com.czxy.back.BaseTest;
-import com.czxy.back.bean.Product;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
