@@ -1098,7 +1098,7 @@
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="267" parent="235" name="desc">
+    <column id="267" parent="235" name="product_desc">
       <Position>3</Position>
       <DataType>varchar(255)|0s</DataType>
       <DefaultExpression>&apos;此商品还没有添加描述&apos;</DefaultExpression>
@@ -1132,7 +1132,7 @@
       <Position>8</Position>
       <Comment>0 下架  1 上架</Comment>
       <DataType>int(1)|0s</DataType>
-      <NotNull>1</NotNull>
+      <DefaultExpression>0</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="273" parent="235" name="create_time">

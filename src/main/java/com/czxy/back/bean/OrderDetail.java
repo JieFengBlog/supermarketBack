@@ -1,7 +1,7 @@
 package com.czxy.back.bean;
 
 
-public class TbOrderDetail {
+public class OrderDetail {
 
   private Integer id;
   private Integer productId;

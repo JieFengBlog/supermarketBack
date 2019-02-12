@@ -1,14 +1,23 @@
 package com.czxy.back.bean;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
 public class Category {
 
   private Integer id;
   private String name;
-  private Date createTime;
 
+  public Category() {
+  }
+
+
+  public Category(Integer id, String name) {
+    this.id = id;
+    this.name = name;
+  }
 
   public Integer getId() {
     return id;
@@ -27,11 +36,4 @@ public class Category {
     this.name = name;
   }
 
-  public Date getCreateTime() {
-    return createTime;
-  }
-
-  public void setCreateTime(Date createTime) {
-    this.createTime = createTime;
-  }
 }

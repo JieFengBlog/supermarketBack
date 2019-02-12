@@ -1,20 +1,38 @@
 package com.czxy.back.bean;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
 public class Product {
 
   private Integer id;
   private String name;
-  private String desc;
+  private String productDesc;
   private double price;
   private Category category;
   private Integer stock;
   private String provide;
-  private Integer status;
+  private boolean status;
   private Date createTime;
   private Date lastEditTime;
+
+  @Override
+  public String toString() {
+    return "Product{" +
+            "id=" + id +
+            ", name='" + name + '\'' +
+            ", productDesc='" + productDesc + '\'' +
+            ", price=" + price +
+            ", category=" + category +
+            ", stock=" + stock +
+            ", provide='" + provide + '\'' +
+            ", status=" + status +
+            ", createTime=" + createTime +
+            ", lastEditTime=" + lastEditTime +
+            '}';
+  }
 
   public Integer getId() {
     return id;
@@ -22,14 +40,6 @@ public class Product {
 
   public void setId(Integer id) {
     this.id = id;
-  }
-
-  public void setStock(Integer stock) {
-    this.stock = stock;
-  }
-
-  public void setStatus(Integer status) {
-    this.status = status;
   }
 
   public String getName() {
@@ -40,15 +50,13 @@ public class Product {
     this.name = name;
   }
 
-
-  public String getDesc() {
-    return desc;
+  public String getProductDesc() {
+    return productDesc;
   }
 
-  public void setDesc(String desc) {
-    this.desc = desc;
+  public void setProductDesc(String productDesc) {
+    this.productDesc = productDesc;
   }
-
 
   public double getPrice() {
     return price;
@@ -66,6 +74,14 @@ public class Product {
     this.category = category;
   }
 
+  public Integer getStock() {
+    return stock;
+  }
+
+  public void setStock(Integer stock) {
+    this.stock = stock;
+  }
+
   public String getProvide() {
     return provide;
   }
@@ -74,6 +90,15 @@ public class Product {
     this.provide = provide;
   }
 
+  public boolean isStatus() {
+    return status;
+  }
+
+  public void setStatus(boolean status) {
+    this.status = status;
+  }
+
+  @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
   public Date getCreateTime() {
     return createTime;
   }
@@ -82,7 +107,7 @@ public class Product {
     this.createTime = createTime;
   }
 
-
+  @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
   public Date getLastEditTime() {
     return lastEditTime;
   }
@@ -90,5 +115,4 @@ public class Product {
   public void setLastEditTime(Date lastEditTime) {
     this.lastEditTime = lastEditTime;
   }
-
 }

@@ -28,5 +28,10 @@
 
     <!--配置好之后我们应当将dao层注入到我们的IOC容器中-->
     <!--不能能用context:component-scan-->
-    <mybatis:scan base-package="com.czxy.back.dao"/>
+    <!--<mybatis:scan base-package="com.czxy.back.dao"/>-->
+    <!-- 配置扫描Dao接口包，动态实现Dao接口，注入到spring容器中 -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+        <property name="basePackage" value="com.czxy.back.dao"/>
+    </bean>
 </beans>
