@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.czxy.back.dao.OrderDetailDao">
+
+    <!--批量添加订单详情商品-->
+    <insert id="batchInsertOrderDetail" parameterType="orderDetail">
+        insert into tb_order_detail(product_id,order_id,product_name,product_desc,product_price,product_amount,amount_of_money,is_product_exists)
+            values
+            <foreach collection="orderDetailList" item="item" separator=",">
+                (#{item.productId},#{item.orderId},#{item.productName},#{item.productDesc},#{item.productPrice},#{item.productAmount},#{item.amountOfMoney},#{item.isProductExists})
+            </foreach>
+    </insert>
+
+</mapper>

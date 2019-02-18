@@ -3,17 +3,18 @@ package com.czxy.back.bean;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Order {
+public class Order implements Serializable {
 
   private Integer id;
   private String orderNumber;
   private double orderPrice;
   private String orderProvide;
   private Integer userId;
-  private Integer orderStatus;
-  private Integer orderType;
+  private Integer orderStatus;//0 删除 1 正常
+  private Integer orderType;//0 进货订单 1 出货订单
   private Date createTime;
   private Date settlementTime;
 
@@ -89,5 +90,20 @@ public class Order {
 
   public void setSettlementTime(Date settlementTime) {
     this.settlementTime = settlementTime;
+  }
+
+  @Override
+  public String toString() {
+    return "Order{" +
+            "id=" + id +
+            ", orderNumber='" + orderNumber + '\'' +
+            ", orderPrice=" + orderPrice +
+            ", orderProvide='" + orderProvide + '\'' +
+            ", userId=" + userId +
+            ", orderStatus=" + orderStatus +
+            ", orderType=" + orderType +
+            ", createTime=" + createTime +
+            ", settlementTime=" + settlementTime +
+            '}';
   }
 }

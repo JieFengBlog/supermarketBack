@@ -5,7 +5,6 @@
 
 <mapper namespace="com.czxy.back.dao.UserDao">
 
-    <select id="getUserByUsername" parameterType="java.lang.String" resultType="user">
-        select username,password,role from tb_user where username = #{username}
-    </select>
+    <cache type="org.mybatis.caches.ehcache.EhcacheCache"/>
+
 </mapper>

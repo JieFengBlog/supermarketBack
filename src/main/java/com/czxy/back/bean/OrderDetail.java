@@ -1,7 +1,9 @@
 package com.czxy.back.bean;
 
 
-public class OrderDetail {
+import java.io.Serializable;
+
+public class OrderDetail implements Serializable {
 
   private Integer id;
   private Integer productId;
@@ -9,8 +11,8 @@ public class OrderDetail {
   private String productName;
   private String productDesc;
   private double productPrice;
-  private Integer productAmount;
-  private double amountOfMoney;
+  private Integer productAmount;//进货/出货数量
+  private double amountOfMoney;//小计
   private Integer isProductExists;
 
   public Integer getId() {

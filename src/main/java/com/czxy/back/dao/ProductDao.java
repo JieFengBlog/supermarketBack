@@ -1,5 +1,6 @@
 package com.czxy.back.dao;
 
+import com.czxy.back.bean.OrderDetail;
 import com.czxy.back.bean.Product;
 import org.apache.ibatis.annotations.Param;
 
@@ -50,8 +51,13 @@ public interface ProductDao {
     boolean addProduct(Product product);
 
     /**
-     *
+     *更新商品
      */
     boolean updateProduct(Product product);
+
+    /**
+     * 更新库存
+     */
+    boolean updateStockIn(@Param("orderDetails") List<OrderDetail> orderDetails);
 
 }

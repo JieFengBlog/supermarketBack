@@ -1,5 +1,6 @@
 package com.czxy.back.bean;
 
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.util.Date;
@@ -7,14 +8,25 @@ import java.util.Date;
 public class User {
 
   private Integer id;
-  private String username;
-  private String password;
+  private String name;
   private String phone;
   private String email;
   private String address;
-  private Integer role;
   private Integer userStatus;
   private Date registerTime;
+
+  @Override
+  public String toString() {
+    return "User{" +
+            "id=" + id +
+            ", name='" + name + '\'' +
+            ", phone='" + phone + '\'' +
+            ", email='" + email + '\'' +
+            ", address='" + address + '\'' +
+            ", userStatus=" + userStatus +
+            ", registerTime=" + registerTime +
+            '}';
+  }
 
   public Integer getId() {
     return id;
@@ -24,20 +36,12 @@ public class User {
     this.id = id;
   }
 
-  public String getUsername() {
-    return username;
+  public String getName() {
+    return name;
   }
 
-  public void setUsername(String username) {
-    this.username = username;
-  }
-
-  public String getPassword() {
-    return password;
-  }
-
-  public void setPassword(String password) {
-    this.password = password;
+  public void setName(String name) {
+    this.name = name;
   }
 
   public String getPhone() {
@@ -64,14 +68,6 @@ public class User {
     this.address = address;
   }
 
-  public Integer getRole() {
-    return role;
-  }
-
-  public void setRole(Integer role) {
-    this.role = role;
-  }
-
   public Integer getUserStatus() {
     return userStatus;
   }
@@ -80,11 +76,11 @@ public class User {
     this.userStatus = userStatus;
   }
 
-  @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
   public Date getRegisterTime() {
     return registerTime;
   }
 
+  @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
   public void setRegisterTime(Date registerTime) {
     this.registerTime = registerTime;
   }

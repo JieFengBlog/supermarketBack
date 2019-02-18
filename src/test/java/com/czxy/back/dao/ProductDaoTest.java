@@ -49,6 +49,7 @@ public class ProductDaoTest extends BaseTest {
         Product product = new Product();
         product.setProductDesc("新添加的香蕉");
         product.setPrice(5);
+        product.setUnit("克");
         Category category = new Category();
         category.setId(1);
         product.setCategory(category);

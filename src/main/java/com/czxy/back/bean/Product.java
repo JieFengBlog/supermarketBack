@@ -3,13 +3,15 @@ package com.czxy.back.bean;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Product {
+public class Product implements Serializable {
 
   private Integer id;
   private String name;
   private String productDesc;
+  private String unit;
   private double price;
   private Category category;
   private Integer stock;
@@ -24,6 +26,7 @@ public class Product {
             "id=" + id +
             ", name='" + name + '\'' +
             ", productDesc='" + productDesc + '\'' +
+            ", unit='" + unit + '\'' +
             ", price=" + price +
             ", category=" + category +
             ", stock=" + stock +
@@ -34,6 +37,13 @@ public class Product {
             '}';
   }
 
+  public String getUnit() {
+    return unit;
+  }
+
+  public void setUnit(String unit) {
+    this.unit = unit;
+  }
   public Integer getId() {
     return id;
   }

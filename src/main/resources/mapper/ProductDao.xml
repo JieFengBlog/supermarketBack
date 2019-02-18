@@ -4,12 +4,16 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.czxy.back.dao.ProductDao">
 
+
+    <cache type="org.mybatis.caches.ehcache.EhcacheCache"/>
+
     <!--根据id查询商品信息，这里使用了分布查询-->
     <resultMap id="select_product" type="product">
         <id  column="id" property="id"/>
         <result column="name" property="name"/>
         <result column="product_desc" property="productDesc"/>
         <result column="price" property="price"/>
+        <result column="unit" property="unit"/>
         <result column="stock" property="stock"/>
         <result column="provide" property="provide"/>
         <result column="status" property="status"/>
@@ -65,8 +69,8 @@
 
     <!--这里由于数据库中desc字段作为列值了一直报错，因为desc是关键字，所以改为product_desc-->
     <insert id="addProduct" parameterType="product">
-      insert into tb_product(name,product_desc,price,category_id,stock,provide,status,create_time,last_edit_time)
-      values(#{name},#{productDesc},#{price},#{category.id},#{stock},#{provide},#{status},#{createTime},#{lastEditTime})
+      insert into tb_product(name,product_desc,price,category_id,stock,provide,status,create_time,last_edit_time,unit)
+      values(#{name},#{productDesc},#{price},#{category.id},#{stock},#{provide},#{status},#{createTime},#{lastEditTime},#{unit})
     </insert>
 
     <!--更新某个商品信息-->
@@ -78,6 +82,9 @@
             </if>
             <if test="productDesc != null and productDesc != ''">
                 product_desc = #{productDesc},
+            </if>
+            <if test="unit != null and unit !=''">
+                unit = #{unit},
             </if>
             <if test="price != null and price != ''">
                 price = #{price},
@@ -102,6 +109,13 @@
             </if>
         </trim>
         where id = #{id}
+    </update>
+
+
+    <update id="updateStockIn" parameterType="orderDetail">
+        <foreach collection="orderDetails" item="item" separator=";">
+            update tb_product set stock = stock + #{item.productAmount} where id = #{item.productId}
+        </foreach>
     </update>
 
 </mapper>

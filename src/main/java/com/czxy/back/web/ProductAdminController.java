@@ -113,6 +113,7 @@ public class ProductAdminController {
         try{
             product.setName((String)object.get("name"));
             product.setPrice((Integer)object.get("price"));
+            product.setUnit((String)object.get("unit"));
             product.setProductDesc((String)object.get("productDesc"));
             Category category = new Category((Integer)object.get("category"),null);
             product.setCategory(category);
@@ -121,7 +122,7 @@ public class ProductAdminController {
         }catch (Exception e){
             e.printStackTrace();
         }
-
+        System.out.println(object);
         System.out.println(map.get("addOrEdit"));
         if((boolean)map.get("addOrEdit")){
             product.setCreateTime(new Date());

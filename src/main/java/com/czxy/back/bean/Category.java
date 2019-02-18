@@ -1,11 +1,8 @@
 package com.czxy.back.bean;
 
+import java.io.Serializable;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
-import java.util.Date;
-
-public class Category {
+public class Category implements Serializable {
 
   private Integer id;
   private String name;

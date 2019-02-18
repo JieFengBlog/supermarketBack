@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.czxy.back.dao.OrderDao">
+
+    <select id="getOrderById" resultType="order">
+        select * from tb_order where id = #{id}
+    </select>
+
+    <select id="getAllOrder" resultType="order" parameterType="integer">
+        select * from tb_order
+        <where>
+            <if test="_parameter  != null">
+                order_type = #{type}
+            </if>
+        </where>
+
+
+    </select>
+
+
+    <insert id="insertOrder" parameterType="order" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        insert into tb_order(order_number,order_price,order_provide,user_id,order_status,order_type,create_time,settlement_time)
+        values(#{orderNumber},#{orderPrice},#{orderProvide},#{userId},#{orderStatus},#{orderType},#{createTime},#{settlementTime})
+    </insert>
+
+</mapper>

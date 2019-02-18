@@ -1,6 +1,7 @@
 package com.czxy.back.web;
 
 import com.czxy.back.service.UserService;
+import com.czxy.back.service.ValidationService;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,11 +14,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Controller
-@RequestMapping("/user")
-public class UserAdminController {
+@RequestMapping("/login")
+public class LoginAdminController {
 
     @Autowired
-    private UserService userService;
+    private ValidationService validationService;
 
 
     @RequestMapping(value = "/validation",method = RequestMethod.POST)
@@ -28,7 +29,7 @@ public class UserAdminController {
         JSONObject userInfo = JSONObject.fromObject(map.get("userInfo"));
         String username = (String) userInfo.get("username");
         String password = (String) userInfo.get("password");
-        boolean result = userService.validation(username, password);
+        boolean result = validationService.validation(username, password);
         if (result) {
             modelMap.put("success", true);
         } else {

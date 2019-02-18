@@ -184,6 +184,27 @@
     </dependency>
 
 
+    <dependency>
+      <groupId>org.mybatis.caches</groupId>
+      <artifactId>mybatis-ehcache</artifactId>
+      <version>1.1.0</version>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/org.ehcache/ehcache -->
+    <dependency>
+      <groupId>org.ehcache</groupId>
+      <artifactId>ehcache</artifactId>
+      <version>3.6.3</version>
+    </dependency>
+
+    <!--没有这个log4j2会报错-->
+    <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-slf4j-impl -->
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-slf4j-impl</artifactId>
+      <version>2.11.1</version>
+    </dependency>
+
   </dependencies>
 
   <build>

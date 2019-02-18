@@ -10,8 +10,7 @@ create table tb_order_detail
   product_price     double                           null,
   product_amount    int(10)                          null,
   amount_of_money   double                           null comment '小计金额',
-  is_product_exists int(4)                           null comment '商品是否有效',
+  is_product_exists int(4)                           null,
   constraint tb_order_detail_tb_order_id_fk
     foreign key (order_id) references tb_order (id)
 );
-
