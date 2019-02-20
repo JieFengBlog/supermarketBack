@@ -3,9 +3,10 @@ package com.czxy.back.bean;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class User {
+public class User implements Serializable {
 
   private Integer id;
   private String name;
@@ -26,6 +27,14 @@ public class User {
             ", userStatus=" + userStatus +
             ", registerTime=" + registerTime +
             '}';
+  }
+
+
+  public User(Integer id) {
+    this.id = id;
+  }
+
+  public User() {
   }
 
   public Integer getId() {

@@ -3,13 +3,14 @@ package com.czxy.back.web;
 
 import com.czxy.back.bean.Order;
 import com.czxy.back.bean.OrderDetail;
+import com.czxy.back.bean.User;
 import com.czxy.back.dao.OrderDao;
 import com.czxy.back.service.OrderDetailService;
+import com.czxy.back.service.OrderService;
 import com.czxy.back.util.DateUtil;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -28,6 +29,9 @@ public class OrderAdminController {
 
     @Autowired
     private OrderDao orderDao;
+
+    @Autowired
+    private OrderService orderService;
 
     /**
      * 生成订单
@@ -52,12 +56,16 @@ public class OrderAdminController {
             order.setOrderProvide((String)map.get("supply"));
             order.setOrderType(0);
         }else{
-            order.setUserId(1);
+            User user = new User();
+            user.setId((Integer)map.get("consumer"));
+            order.setUser(user);
             order.setOrderType(1);
         }
         //插入订单
         boolean result = orderDao.insertOrder(order);
         System.out.println("orderId: " + order.getId());
+        //统计金额
+        float totalMoney = 0;
         try{
             if(result){
                 //如果订单生成成功，则开始一步步生成订单详情列表
@@ -73,12 +81,22 @@ public class OrderAdminController {
                     orderDetail.setProductDesc((String)object.get("productDesc"));
                     orderDetail.setProductPrice((Integer)object.get("price"));
                     orderDetail.setProductAmount(Integer.parseInt((String)object.get("number")));
-                    orderDetail.setAmountOfMoney(Integer.parseInt((String)object.get("money")));
+                    //统计出订单的金额总额
+                    totalMoney += ((Integer)object.get("money"));
+                    orderDetail.setAmountOfMoney((Integer)object.get("money"));
                     orderDetail.setIsProductExists(1);
                     detailList.add(orderDetail);
                 }
-                result1 = orderDetailService.batchInsertOrderDetail(detailList);
-
+                //将统计好的金额设置到里面
+                Order sumPrice = new Order();
+                sumPrice.setId(order.getId());
+                sumPrice.setOrderPrice(totalMoney);
+                System.out.println("totalMoney: " + totalMoney);
+                orderDao.updateOrder(sumPrice);
+                if((boolean) map.get("InOrOut"))
+                    result1 = orderDetailService.batchInsertOrderDetail(detailList,true);
+                else
+                    result1 = orderDetailService.batchInsertOrderDetail(detailList,false);
             }
         }catch (Exception e){
             e.printStackTrace();
@@ -87,8 +105,63 @@ public class OrderAdminController {
         if(result1){
             modelMap.put("success",true);
         }else{
-            modelMap.put("success",true);
+            modelMap.put("success",false);
         }
         return modelMap;
     }
+
+    @RequestMapping(value = "/getallorder", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String,Object> getAllOrder(@RequestBody Map map) {
+        Map<String,Object> modelMap = new HashMap<>();
+        Integer status = (Integer)map.get("status");
+        List<Order> orderList = orderDao.getAllOrder(status);
+        if (orderList != null){
+            modelMap.put("success",true);
+            modelMap.put("orderList",orderList);
+        }else{
+            modelMap.put("success",false);
+        }
+        return modelMap;
+    }
+
+    @RequestMapping(value = "/updateorder", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String,Object> updateOrder(@RequestBody Map map) {
+        Map<String,Object> modelMap = new HashMap<>();
+        JSONObject object = JSONObject.fromObject(map.get("orderUpdateForm"));
+        Order order = (Order)JSONObject.toBean(object,Order.class);
+        System.out.println(order);
+        User user = new User();
+        user.setId((Integer)map.get("userId"));
+        order.setUser(user);
+        boolean result = orderService.updateOrder(order);
+        if(result){
+            modelMap.put("success",true);
+        }else{
+            modelMap.put("success",false);
+        }
+        return modelMap;
+    }
+
+    /**
+     * 删除订单
+     * @param map
+     * @return
+     */
+
+    @RequestMapping(value = "/deleteorder", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String,Object> deleteOrder(@RequestBody Map map) {
+        Map<String,Object> modelMap = new HashMap<>();
+        Integer id = (Integer)map.get("id");
+        boolean result = orderService.deleteOrder(id);
+        if(result){
+            modelMap.put("success",true);
+        }else{
+            modelMap.put("success",false);
+        }
+        return modelMap;
+    }
+
 }

@@ -44,12 +44,12 @@
               or provide like '%${provide}%'
             </if>
         </trim>
-
+        order by id desc
     </select>
 
     <!--获取所有的商品-->
     <select id="getAllProducts" resultMap="select_product">
-        select * from tb_product
+        select * from tb_product order by id desc
     </select>
 
 
@@ -115,6 +115,12 @@
     <update id="updateStockIn" parameterType="orderDetail">
         <foreach collection="orderDetails" item="item" separator=";">
             update tb_product set stock = stock + #{item.productAmount} where id = #{item.productId}
+        </foreach>
+    </update>
+
+    <update id="updateStockOut" parameterType="orderDetail">
+        <foreach collection="orderDetails" item="item" separator=";">
+            update tb_product set stock = stock - #{item.productAmount} where id = #{item.productId}
         </foreach>
     </update>
 

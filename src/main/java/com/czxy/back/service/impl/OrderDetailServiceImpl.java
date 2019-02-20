@@ -21,12 +21,23 @@ public class OrderDetailServiceImpl implements OrderDetailService {
     @Autowired
     private ProductDao productDao;
 
+    /**
+     * 批量添加订单中的详情商品
+     * @param detailList
+     * @return
+     * @throws OrderDetailException
+     */
     @Override
     @Transactional
-    public boolean batchInsertOrderDetail(List<OrderDetail> detailList) throws OrderDetailException {
+    public boolean batchInsertOrderDetail(List<OrderDetail> detailList,boolean orderType) throws OrderDetailException {
+        boolean result1 = false;
         try{
-            //更新库存
-            boolean result1 = productDao.updateStockIn(detailList);
+            if(orderType){
+                //更新库存
+               result1 = productDao.updateStockIn(detailList);
+            }else{
+                result1 = productDao.updateStockOut(detailList);
+            }
             //批量插入订单详情商品
             boolean result2 = orderDetailDao.batchInsertOrderDetail(detailList);
             if(result1 && result2){
@@ -36,5 +47,17 @@ public class OrderDetailServiceImpl implements OrderDetailService {
             throw new OrderDetailException("OrderDetailServiceImpl中有异常");
         }
         return false;
+    }
+
+    /**
+     *
+     * @param orderId
+     * @return
+     */
+    @Override
+    public List<OrderDetail> getOrderDetailList(Integer orderId) {
+
+        List<OrderDetail> list = orderDetailDao.getOrderDetail(orderId);
+        return list;
     }
 }

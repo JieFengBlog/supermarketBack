@@ -7,4 +7,46 @@
 
     <cache type="org.mybatis.caches.ehcache.EhcacheCache"/>
 
+    <select id="getUserById" resultType="user">
+        select * from tb_user where id = #{id}
+    </select>
+
+    <!--获取所有用户-->
+    <select id="getAllUser" resultType="user">
+        select * from tb_user order by id desc
+    </select>
+
+
+    <insert id="addUser" parameterType="user">
+        insert into tb_user(name,phone,email,address,user_status,register_time)
+        values(#{name},#{phone},#{email},#{address},#{userStatus},#{registerTime})
+    </insert>
+
+    <update id="updateUserById" parameterType="user">
+        update tb_user
+        <trim prefix="set" suffixOverrides=",">
+            <if test="name != null and name != ''">
+                name = #{name},
+            </if>
+            <if test="phone != null and phone != ''">
+                phone = #{phone},
+            </if>
+            <if test="email != null and email != ''">
+                email = #{email},
+            </if>
+            <if test="address != null and address != ''">
+                address = #{address},
+            </if>
+            <if test="userStatus != null">
+                user_status = #{userStatus},
+            </if>
+        </trim>
+        where id = #{id}
+    </update>
+
+
+    <delete id="deleteUserById" parameterType="integer">
+        delete from tb_user where id = #{id}
+    </delete>
+
 </mapper>

@@ -17,7 +17,6 @@ public class OrderTest extends BaseTest {
     public void testGetOrderById(){
         Order order = orderDao.getOrderById(1);
         System.out.println(order);
-
     }
 
     @Test
@@ -30,7 +29,17 @@ public class OrderTest extends BaseTest {
 //        System.out.println(orderDao.getAllOrder(null));
         System.out.println("-----------0----------------");
         System.out.println(listIn);
-//        System.out.println("-----------1--------------");
-//        System.out.println(listOut);
+        System.out.println("-----------1--------------");
+        System.out.println(listOut);
     }
+
+
+    @Test
+    public void testUpdateOrder(){
+        Order order = new Order();
+        order.setOrderPrice(15);
+        boolean result = orderDao.updateOrder(order);
+        System.out.println(result);
+    }
+
 }

@@ -1059,232 +1059,242 @@
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <key id="262" parent="234" name="PRIMARY">
+    <index id="262" parent="234" name="tb_order_tb_user_id_fk">
+      <ColNames>user_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="263" parent="234" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="263" parent="234" name="tb_order_order_number_uindex">
+    <key id="264" parent="234" name="tb_order_order_number_uindex">
       <ColNames>order_number</ColNames>
       <UnderlyingIndexName>tb_order_order_number_uindex</UnderlyingIndexName>
     </key>
-    <column id="264" parent="235" name="id">
+    <foreign-key id="265" parent="234" name="tb_order_tb_user_id_fk">
+      <ColNames>user_id</ColNames>
+      <RefSchemaName>supermarket</RefSchemaName>
+      <RefTableName>tb_user</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="266" parent="235" name="id">
       <Position>1</Position>
       <DataType>int(10)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="265" parent="235" name="product_id">
+    <column id="267" parent="235" name="product_id">
       <Position>2</Position>
       <DataType>int(10)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="266" parent="235" name="order_id">
+    <column id="268" parent="235" name="order_id">
       <Position>3</Position>
       <DataType>int(10)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="267" parent="235" name="product_name">
+    <column id="269" parent="235" name="product_name">
       <Position>4</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="268" parent="235" name="product_desc">
+    <column id="270" parent="235" name="product_desc">
       <Position>5</Position>
       <DataType>varchar(255)|0s</DataType>
       <DefaultExpression>&apos;此商品暂时没有描述&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="269" parent="235" name="product_price">
+    <column id="271" parent="235" name="product_price">
       <Position>6</Position>
       <DataType>double|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="270" parent="235" name="product_amount">
+    <column id="272" parent="235" name="product_amount">
       <Position>7</Position>
       <DataType>int(10)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="271" parent="235" name="amount_of_money">
+    <column id="273" parent="235" name="amount_of_money">
       <Position>8</Position>
       <Comment>小计金额</Comment>
       <DataType>double|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="272" parent="235" name="is_product_exists">
+    <column id="274" parent="235" name="is_product_exists">
       <Position>9</Position>
       <DataType>int(4)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="273" parent="235" name="tb_order_detail_tb_order_id_fk">
+    <index id="275" parent="235" name="tb_order_detail_tb_order_id_fk">
       <ColNames>order_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="274" parent="235" name="PRIMARY">
+    <key id="276" parent="235" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="275" parent="235" name="tb_order_detail_tb_order_id_fk">
+    <foreign-key id="277" parent="235" name="tb_order_detail_tb_order_id_fk">
       <ColNames>order_id</ColNames>
       <RefSchemaName>supermarket</RefSchemaName>
       <RefTableName>tb_order</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="276" parent="236" name="id">
+    <column id="278" parent="236" name="id">
       <Position>1</Position>
       <DataType>int(10)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="277" parent="236" name="name">
+    <column id="279" parent="236" name="name">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="278" parent="236" name="product_desc">
+    <column id="280" parent="236" name="product_desc">
       <Position>3</Position>
       <DataType>varchar(255)|0s</DataType>
       <DefaultExpression>&apos;此商品还没有添加描述&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="279" parent="236" name="price">
+    <column id="281" parent="236" name="price">
       <Position>4</Position>
       <DataType>double|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="280" parent="236" name="category_id">
+    <column id="282" parent="236" name="category_id">
       <Position>5</Position>
       <DataType>int(10)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="281" parent="236" name="stock">
+    <column id="283" parent="236" name="stock">
       <Position>6</Position>
       <DataType>int(10)|0s</DataType>
       <DefaultExpression>0</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="282" parent="236" name="provide">
+    <column id="284" parent="236" name="provide">
       <Position>7</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="283" parent="236" name="status">
+    <column id="285" parent="236" name="status">
       <Position>8</Position>
       <Comment>0 下架  1 上架</Comment>
       <DataType>int(1)|0s</DataType>
       <DefaultExpression>0</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="284" parent="236" name="create_time">
+    <column id="286" parent="236" name="create_time">
       <Position>9</Position>
       <DataType>datetime|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="285" parent="236" name="last_edit_time">
+    <column id="287" parent="236" name="last_edit_time">
       <Position>10</Position>
       <DataType>datetime|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="286" parent="236" name="unit">
+    <column id="288" parent="236" name="unit">
       <Position>11</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="287" parent="236" name="tb_product_name_uindex">
+    <index id="289" parent="236" name="tb_product_name_uindex">
       <ColNames>name</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <key id="288" parent="236" name="PRIMARY">
+    <key id="290" parent="236" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="289" parent="236" name="tb_product_name_uindex">
+    <key id="291" parent="236" name="tb_product_name_uindex">
       <ColNames>name</ColNames>
       <UnderlyingIndexName>tb_product_name_uindex</UnderlyingIndexName>
     </key>
-    <column id="290" parent="237" name="id">
+    <column id="292" parent="237" name="id">
       <Position>1</Position>
       <DataType>int(4)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="291" parent="237" name="name">
+    <column id="293" parent="237" name="name">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="292" parent="237" name="phone">
+    <column id="294" parent="237" name="phone">
       <Position>3</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="293" parent="237" name="email">
+    <column id="295" parent="237" name="email">
       <Position>4</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="294" parent="237" name="address">
+    <column id="296" parent="237" name="address">
       <Position>5</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="295" parent="237" name="user_status">
+    <column id="297" parent="237" name="user_status">
       <Position>6</Position>
       <Comment>0 已被删除 1 正常</Comment>
       <DataType>int(2)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="296" parent="237" name="register_time">
+    <column id="298" parent="237" name="register_time">
       <Position>7</Position>
       <DataType>datetime|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="297" parent="237" name="PRIMARY">
+    <key id="299" parent="237" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="298" parent="238" name="id">
+    <column id="300" parent="238" name="id">
       <Position>1</Position>
       <DataType>int(10)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="299" parent="238" name="username">
+    <column id="301" parent="238" name="username">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="300" parent="238" name="password">
+    <column id="302" parent="238" name="password">
       <Position>3</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="301" parent="238" name="tb_validation_username_uindex">
+    <index id="303" parent="238" name="tb_validation_username_uindex">
       <ColNames>username</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <key id="302" parent="238" name="PRIMARY">
+    <key id="304" parent="238" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="303" parent="238" name="tb_validation_username_uindex">
+    <key id="305" parent="238" name="tb_validation_username_uindex">
       <ColNames>username</ColNames>
       <UnderlyingIndexName>tb_validation_username_uindex</UnderlyingIndexName>
     </key>

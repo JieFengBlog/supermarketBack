@@ -12,7 +12,7 @@ public class Order implements Serializable {
   private String orderNumber;
   private double orderPrice;
   private String orderProvide;
-  private Integer userId;
+  private User user;
   private Integer orderStatus;//0 删除 1 正常
   private Integer orderType;//0 进货订单 1 出货订单
   private Date createTime;
@@ -50,12 +50,12 @@ public class Order implements Serializable {
     this.orderProvide = orderProvide;
   }
 
-  public Integer getUserId() {
-    return userId;
+  public User getUser() {
+    return user;
   }
 
-  public void setUserId(Integer userId) {
-    this.userId = userId;
+  public void setUser(User user) {
+    this.user = user;
   }
 
   public Integer getOrderStatus() {
@@ -99,7 +99,7 @@ public class Order implements Serializable {
             ", orderNumber='" + orderNumber + '\'' +
             ", orderPrice=" + orderPrice +
             ", orderProvide='" + orderProvide + '\'' +
-            ", userId=" + userId +
+            ", user=" + user +
             ", orderStatus=" + orderStatus +
             ", orderType=" + orderType +
             ", createTime=" + createTime +

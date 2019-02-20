@@ -19,6 +19,8 @@ public class Product implements Serializable {
   private boolean status;
   private Date createTime;
   private Date lastEditTime;
+  private int number;
+  private float money;
 
   @Override
   public String toString() {
@@ -35,6 +37,22 @@ public class Product implements Serializable {
             ", createTime=" + createTime +
             ", lastEditTime=" + lastEditTime +
             '}';
+  }
+
+  public int getNumber() {
+    return number;
+  }
+
+  public void setNumber(int number) {
+    this.number = number;
+  }
+
+  public float getMoney() {
+    return money;
+  }
+
+  public void setMoney(float money) {
+    this.money = money;
   }
 
   public String getUnit() {

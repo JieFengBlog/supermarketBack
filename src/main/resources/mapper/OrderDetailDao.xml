@@ -14,4 +14,13 @@
             </foreach>
     </insert>
 
+    <!--根据订单id去查询所有的详情行-->
+    <select id="getOrderDetail" resultType="orderDetail">
+        select * from tb_order_detail where order_id = #{order_id}
+    </select>
+
+    <!--批量删除-->
+    <delete id="batchDeleteOrder" parameterType="orderDetail">
+          delete from tb_order_detail where order_id = #{order_id}
+    </delete>
 </mapper>

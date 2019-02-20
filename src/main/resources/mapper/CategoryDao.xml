@@ -13,7 +13,7 @@
 
     <!--查询所有的分类-->
     <select id="getAllCategory" resultType="category">
-        select * from tb_category
+        select * from tb_category order by id desc
     </select>
 
 

@@ -28,4 +28,19 @@ public interface OrderDao {
      */
     boolean insertOrder(Order order);
 
+    /**
+     * 更新订单
+     * @param order
+     * @return
+     */
+    boolean updateOrder(Order order);
+
+    /**
+     * 根据id删除订单
+     * @param id
+     * @return
+     */
+    boolean deleteOrder(Integer id);
+
+
 }

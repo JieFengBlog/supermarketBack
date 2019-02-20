@@ -59,5 +59,9 @@ public interface ProductDao {
      * 更新库存
      */
     boolean updateStockIn(@Param("orderDetails") List<OrderDetail> orderDetails);
+    /**
+     * 更新库存
+     */
+    boolean updateStockOut(@Param("orderDetails") List<OrderDetail> orderDetails);
 
 }

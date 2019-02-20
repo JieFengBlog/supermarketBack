@@ -6,11 +6,15 @@ import java.util.List;
 
 public interface OrderService {
 
+
     /**
-     * 进货
+     * 更新订单数据
+     * @param order
      * @return
      */
-     String orderIn(String inListJSON);
+
+     boolean updateOrder(Order order);
 
 
+     boolean deleteOrder(Integer id);
 }
