@@ -53,4 +53,21 @@ public class OrderServiceImpl implements OrderService {
         else
             return false;
     }
+
+    /**
+     *
+     * @param orderType
+     * @param day
+     * @return
+     */
+    @Override
+    public int everyDayOrderCount(Integer orderType, Integer day) {
+        return orderDao.everyDayOrderCount(orderType,day);
+    }
+
+    @Override
+    public int countOrder(Integer type) {
+        return orderDao.countOrder(type);
+    }
+
 }

@@ -17,4 +17,17 @@ public interface OrderService {
 
 
      boolean deleteOrder(Integer id);
+
+    /**
+     * 统计每天的订单
+     * @return
+     */
+    int everyDayOrderCount(Integer orderType,Integer day);
+
+    /**
+     *
+     * @param type
+     * @return
+     */
+    int countOrder(Integer type);
 }

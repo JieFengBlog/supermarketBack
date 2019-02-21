@@ -8,24 +8,22 @@ import java.util.Date;
 
 public class Employee  implements Serializable {
 
-  private long id;
+  private Integer id;
   private String name;
-  private long gender;
+  private Integer gender;
   private String number;
   private String phone;
   private String address;
   private Date startTime;
   private String role;
 
-
-  public long getId() {
+  public Integer getId() {
     return id;
   }
 
-  public void setId(long id) {
+  public void setId(Integer id) {
     this.id = id;
   }
-
 
   public String getName() {
     return name;
@@ -35,15 +33,13 @@ public class Employee  implements Serializable {
     this.name = name;
   }
 
-
-  public long getGender() {
+  public Integer getGender() {
     return gender;
   }
 
-  public void setGender(long gender) {
+  public void setGender(Integer gender) {
     this.gender = gender;
   }
-
 
   public String getNumber() {
     return number;
@@ -53,7 +49,6 @@ public class Employee  implements Serializable {
     this.number = number;
   }
 
-
   public String getPhone() {
     return phone;
   }
@@ -61,7 +56,6 @@ public class Employee  implements Serializable {
   public void setPhone(String phone) {
     this.phone = phone;
   }
-
 
   public String getAddress() {
     return address;
@@ -88,4 +82,17 @@ public class Employee  implements Serializable {
     this.role = role;
   }
 
+  @Override
+  public String toString() {
+    return "Employee{" +
+            "id=" + id +
+            ", name='" + name + '\'' +
+            ", gender=" + gender +
+            ", number='" + number + '\'' +
+            ", phone='" + phone + '\'' +
+            ", address='" + address + '\'' +
+            ", startTime=" + startTime +
+            ", role='" + role + '\'' +
+            '}';
+  }
 }

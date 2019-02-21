@@ -42,4 +42,10 @@ public class OrderTest extends BaseTest {
         System.out.println(result);
     }
 
+    @Test
+    public void testQueryPerDay(){
+        int count = orderDao.everyDayOrderCount(0,0);
+        System.out.println(count);
+    }
+
 }

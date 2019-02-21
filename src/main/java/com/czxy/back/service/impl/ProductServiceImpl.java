@@ -30,8 +30,8 @@ public class ProductServiceImpl implements ProductService {
      * @return
      */
     @Override
-    public List<Product> getAllProducts() {
-        return productDao.getAllProducts();
+    public List<Product> getAllProducts(Integer type) {
+        return productDao.getAllProducts(type);
     }
 
 
@@ -85,6 +85,11 @@ public class ProductServiceImpl implements ProductService {
      */
     public boolean updateProduct(Product product){
         return productDao.updateProduct(product);
+    }
+
+    @Override
+    public int countProduct() {
+        return productDao.countProduct();
     }
 
 }

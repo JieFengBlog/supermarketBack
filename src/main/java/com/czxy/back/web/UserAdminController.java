@@ -85,4 +85,28 @@ public class UserAdminController {
             modelMap.put("success",false);
         return modelMap;
     }
+
+
+    /**
+     * 模糊查询
+     * @param map
+     * @return
+     */
+    @RequestMapping(value = "/selectcondition", method = RequestMethod.POST)
+    @ResponseBody
+    private Map<String,Object> selectCondition(@RequestBody Map map){
+        Map<String,Object> modelMap = new HashMap<>();
+        String searchCondition = (String) map.get("searchCondition");
+        System.out.println(map);
+        User user = new User();
+        user.setName(searchCondition);
+        List<User> userlist = userService.getUserListByCondition(user);
+        if(userlist != null){
+            modelMap.put("success",true);
+            modelMap.put("searchUserList",userlist);
+        }else{
+            modelMap.put("success",false);
+        }
+        return modelMap;
+    }
 }

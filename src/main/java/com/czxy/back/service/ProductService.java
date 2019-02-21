@@ -17,7 +17,7 @@ public interface ProductService {
      * 获取所有的商品
      * @return
      */
-    List<Product> getAllProducts();
+    List<Product> getAllProducts(Integer type);
 
     /**
      * 模糊查询
@@ -55,4 +55,9 @@ public interface ProductService {
     boolean updateProduct(Product product);
 
 
+    /**
+     * 获取商品的总数
+     * @return
+     */
+    int countProduct();
 }

@@ -48,8 +48,14 @@
     </select>
 
     <!--获取所有的商品-->
-    <select id="getAllProducts" resultMap="select_product">
-        select * from tb_product order by id desc
+    <select id="getAllProducts" resultMap="select_product" parameterType="integer">
+        select * from tb_product
+        <trim prefix="where">
+            <if test="_parameter == 1">
+                status = #{status}
+            </if>
+        </trim>
+        order by id desc
     </select>
 
 
@@ -123,5 +129,10 @@
             update tb_product set stock = stock - #{item.productAmount} where id = #{item.productId}
         </foreach>
     </update>
+
+
+    <select id="countProduct" resultType="int">
+        select count(*) from tb_product
+    </select>
 
 </mapper>

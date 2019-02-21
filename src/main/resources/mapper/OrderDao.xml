@@ -44,7 +44,10 @@
                 order_provide = #{orderProvide},
             </if>
             <if test="orderStatus != null">
-                order_status = #{orderStatus}
+                order_status = #{orderStatus},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime}
             </if>
         </trim>
         where id = #{id}
@@ -54,4 +57,11 @@
         delete from tb_order where id = #{id}
     </delete>
 
+    <select id="everyDayOrderCount" resultType="int">
+        SELECT count(*) FROM tb_order WHERE TO_DAYS( NOW( ) ) - TO_DAYS(create_time) = #{day} and order_type = #{orderType}
+    </select>
+
+    <select id="countOrder" resultType="int">
+        select count(*) from tb_order where order_type = #{type}
+    </select>
 </mapper>

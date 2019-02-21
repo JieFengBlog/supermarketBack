@@ -2,6 +2,7 @@ package com.czxy.back.dao;
 
 
 import com.czxy.back.bean.Order;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -42,5 +43,14 @@ public interface OrderDao {
      */
     boolean deleteOrder(Integer id);
 
+    /**
+     *
+     * @param orderType 订单类型 0 进货 1 出货
+     * @param day 0 今天  1 昨天  2 前天
+     * @return
+     */
+    int everyDayOrderCount(@Param("orderType") Integer orderType,@Param("day") Integer day);
 
+
+    int countOrder(Integer orderType);
 }

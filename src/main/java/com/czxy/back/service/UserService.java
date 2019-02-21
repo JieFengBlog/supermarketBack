@@ -41,4 +41,14 @@ public interface UserService {
      */
     boolean deleteUserById(Integer id);
 
+    /**
+     * 统计用户
+     * @return
+     */
+    int countUser();
+
+
+    int everyDayUserCount(Integer day);
+
+    List<User> getUserListByCondition(User user);
 }

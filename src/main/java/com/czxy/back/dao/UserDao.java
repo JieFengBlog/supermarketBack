@@ -1,6 +1,7 @@
 package com.czxy.back.dao;
 
 import com.czxy.back.bean.User;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -36,5 +37,15 @@ public interface UserDao {
      * @return
      */
     boolean deleteUserById(Integer id);
+
+    /**
+     * 统计用户人数
+     * @return
+     */
+    int countUser();
+
+    int everyDayUserCount(Integer day);
+
+    List<User> getUserListByCondition(User user);
 
 }

@@ -17,4 +17,7 @@
     </select>
 
 
+    <insert id="addCategory" parameterType="category">
+        insert into tb_category(name) values(#{name})
+    </insert>
 </mapper>

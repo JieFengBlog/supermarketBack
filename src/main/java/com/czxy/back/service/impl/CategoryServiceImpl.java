@@ -22,4 +22,11 @@ public class CategoryServiceImpl implements CategoryService {
     public List<Category> getAllCategory() {
         return categoryDao.getAllCategory();
     }
+
+    @Override
+    public boolean addCategory(Category category) {
+        return categoryDao.addCategory(category);
+    }
+
+
 }

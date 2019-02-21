@@ -46,11 +46,12 @@ public class ProductAdminController {
      * 获取所有的商品
      * @return
      */
-    @RequestMapping(value = "/getallproduct", method = RequestMethod.GET)
+    @RequestMapping(value = "/getallproduct", method = RequestMethod.POST)
     @ResponseBody
-    private Map<String, Object> getAllProduct() {
+    private Map<String, Object> getAllProduct(@RequestBody Map map) {
         Map<String, Object> modelMap = new HashMap<>();
-        List<Product> products = productService.getAllProducts();
+        Integer status = (Integer) map.get("status");
+        List<Product> products = productService.getAllProducts(status);
         modelMap.put("success",true);
         modelMap.put("products",products);
         return modelMap;

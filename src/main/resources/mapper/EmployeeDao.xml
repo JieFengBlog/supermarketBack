@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.czxy.back.dao.EmployeeDao">
+
+    <select id="getAllEmployee" resultType="employee">
+        select * from tb_employee
+    </select>
+
+    <insert id="insertEmployee" parameterType="employee">
+        insert into tb_employee(name,gender,number,phone,address,start_time,role)
+          values(#{name},#{gender},#{number},#{phone},#{address},#{startTime},#{role})
+    </insert>
+
+
+    <delete id="deleteEmployeeById">
+        delete from tb_employee where id = #{id}
+    </delete>
+
+    <update id="updateEmployeeById" parameterType="employee">
+        update tb_employee
+        <trim prefix="set" suffixOverrides=",">
+            <if test="name != null and name != ''">
+                name = #{name},
+            </if>
+            <if test="gender != null">
+                gender = #{gender},
+            </if>
+            <if test="number != null and number != ''">
+                number = #{number},
+            </if>
+            <if test="phone != null and phone != ''">
+                phone = #{phone},
+            </if>
+            <if test="address != null and address != ''">
+                address = #{address},
+            </if>
+            <if test="startTime != null">
+                start_time = #{startTime},
+            </if>
+            <if test="role != null and role != ''">
+                role = #{role}
+            </if>
+        </trim>
+        where id = #{id}
+    </update>
+    
+    <select id="countEmployee" resultType="int">
+        select count(*) from tb_employee
+    </select>
+
+
+    <!--多条件查询-->
+    <!--
+        根据查询的条件有: 商品的名称(模糊查询) 商品的分类TODO 商品的提供商(模糊查询)
+    -->
+    <select id="getEmployeeListByCondition" resultType="employee" >
+        <!--使用bind标签将name和provide进行处理-->
+        select * from tb_employee
+        <trim prefix="where" prefixOverrides="or">
+            <if test="name != null and name != ''">
+                or name like '%${name}%'
+            </if>
+            <if test="number != null and number != ''">
+                or number like '%${number}%'
+            </if>
+        </trim>
+        order by id desc
+    </select>
+</mapper>

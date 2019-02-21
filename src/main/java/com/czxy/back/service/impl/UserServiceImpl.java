@@ -44,5 +44,19 @@ public class UserServiceImpl implements UserService {
         return userDao.deleteUserById(id);
     }
 
+    @Override
+    public int countUser() {
+        return userDao.countUser();
+    }
+
+    @Override
+    public int everyDayUserCount(Integer day) {
+        return userDao.everyDayUserCount(day);
+    }
+
+    @Override
+    public List<User> getUserListByCondition(User user) {
+        return userDao.getUserListByCondition(user);
+    }
 
 }

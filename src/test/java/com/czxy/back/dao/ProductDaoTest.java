@@ -83,4 +83,10 @@ public class ProductDaoTest extends BaseTest {
         boolean result = productDao.updateProduct(product);
         System.out.println(result);
     }
+
+    @Test
+    public void testcountProduct(){
+        int count = productDao.countProduct();
+        System.out.println(count);
+    }
 }

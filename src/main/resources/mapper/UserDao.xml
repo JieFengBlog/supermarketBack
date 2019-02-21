@@ -49,4 +49,29 @@
         delete from tb_user where id = #{id}
     </delete>
 
+    <select id="countUser" resultType="int">
+        select count(*) from tb_user
+    </select>
+
+
+
+    <select id="everyDayUserCount" resultType="int">
+        SELECT count(*) FROM tb_user WHERE TO_DAYS( NOW( ) ) - TO_DAYS(register_time) = #{day}
+    </select>
+
+
+    <!--多条件查询-->
+    <!--
+        根据查询的条件有: 商品的名称(模糊查询) 商品的分类TODO 商品的提供商(模糊查询)
+    -->
+    <select id="getUserListByCondition" resultType="user" >
+        <!--使用bind标签将name和provide进行处理-->
+        select * from tb_user
+        <trim prefix="where" prefixOverrides="or">
+            <if test="name != null and name != ''">
+                or name like '%${name}%'
+            </if>
+        </trim>
+        order by id desc
+    </select>
 </mapper>

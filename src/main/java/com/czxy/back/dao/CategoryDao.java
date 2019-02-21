@@ -12,12 +12,19 @@ public interface CategoryDao {
      * @param id
      * @return
      */
-    public Category getCategoryById(Integer id);
+     Category getCategoryById(Integer id);
 
     /**
      * 查询商品的所有分类
      * @return
      */
     List<Category> getAllCategory();
+
+    /**
+     * 添加分类
+     * @param category
+     * @return
+     */
+    boolean addCategory(Category category);
 
 }

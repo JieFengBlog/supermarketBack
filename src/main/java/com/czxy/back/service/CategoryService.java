@@ -11,4 +11,11 @@ public interface CategoryService {
      * @return
      */
     List<Category> getAllCategory();
+
+    /**
+     * 添加分类
+     * @param category
+     * @return
+     */
+    boolean addCategory(Category category);
 }

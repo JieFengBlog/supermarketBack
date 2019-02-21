@@ -26,7 +26,7 @@ public interface ProductDao {
      * 获取所有的商品
      * @return
      */
-    List<Product> getAllProducts();
+    List<Product> getAllProducts(Integer type);
 
     /**
      * 根据ID删除一个信息
@@ -63,5 +63,11 @@ public interface ProductDao {
      * 更新库存
      */
     boolean updateStockOut(@Param("orderDetails") List<OrderDetail> orderDetails);
+
+    /**
+     * 计算总的商品数
+     * @return
+     */
+    int countProduct();
 
 }

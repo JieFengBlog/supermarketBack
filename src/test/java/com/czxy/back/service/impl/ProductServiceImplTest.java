@@ -39,7 +39,7 @@ public class ProductServiceImplTest extends BaseTest {
     @Test
     public void testGetAllProducts() throws Exception {
     //TODO: Test goes here...
-        List<Product> productList = productService.getAllProducts();
+        List<Product> productList = productService.getAllProducts(1);
         for(Product item:productList){
             System.out.println(item);
         }
