@@ -3,6 +3,7 @@ package com.czxy.back.dao;
 import com.czxy.back.BaseTest;
 import com.czxy.back.bean.Category;
 import com.czxy.back.bean.Product;
+import com.czxy.back.bean.ProductCount;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -88,5 +89,11 @@ public class ProductDaoTest extends BaseTest {
     public void testcountProduct(){
         int count = productDao.countProduct();
         System.out.println(count);
+    }
+
+    @Test
+    public void testCount(){
+        List<ProductCount> list = productDao.productCountTopAndEndFive(0);
+        System.out.println(list);
     }
 }

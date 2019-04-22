@@ -3,6 +3,7 @@ package com.czxy.back.service;
 import com.czxy.back.bean.Product;
 
 import java.util.List;
+import java.util.Map;
 
 public interface ProductService {
 
@@ -60,4 +61,11 @@ public interface ProductService {
      * @return
      */
     int countProduct();
+
+    /**
+     * 1 最高5个 0 最低5个
+     * @param type
+     * @return
+     */
+    List<Map<String,Object>> productCountTopAndEndFiveService(int type);
 }

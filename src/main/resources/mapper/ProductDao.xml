@@ -135,4 +135,18 @@
         select count(*) from tb_product
     </select>
 
+
+    <select id="productCountTopAndEndFive" resultType="ProductCount">
+    SELECT  product_name as name, SUM(product_amount) AS number ,SUM(product_price * product_amount) as price
+    FROM tb_order_detail GROUP BY product_id order by number
+     <if test="_parameter == 1">
+         desc
+     </if>
+
+     <if test="_parameter == 0">
+         asc
+     </if>
+     limit 5;
+    </select>
+
 </mapper>

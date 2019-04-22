@@ -2,6 +2,7 @@ package com.czxy.back.dao;
 
 import com.czxy.back.bean.OrderDetail;
 import com.czxy.back.bean.Product;
+import com.czxy.back.bean.ProductCount;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -69,5 +70,13 @@ public interface ProductDao {
      * @return
      */
     int countProduct();
+
+    /**
+     * 查询前五条或者后五条数据
+     * 1 查询前五条   0 查询后五条
+     * @param type
+     * @return
+     */
+    List<ProductCount> productCountTopAndEndFive(int type);
 
 }

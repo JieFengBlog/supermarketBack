@@ -1,12 +1,16 @@
 package com.czxy.back.service.impl;
 
 import com.czxy.back.bean.Product;
+import com.czxy.back.bean.ProductCount;
 import com.czxy.back.dao.ProductDao;
 import com.czxy.back.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service("productService")
 public class ProductServiceImpl implements ProductService {
@@ -91,5 +95,29 @@ public class ProductServiceImpl implements ProductService {
     public int countProduct() {
         return productDao.countProduct();
     }
+
+    @Override
+    public List<Map<String, Object>> productCountTopAndEndFiveService(int type) {
+        List<Map<String, Object>> list =  new ArrayList<>();
+        List<ProductCount> productCounts = null;
+        if(type == 1){
+            productCounts = productDao.productCountTopAndEndFive(1);
+        }else{
+            productCounts = productDao.productCountTopAndEndFive(0);
+        }
+        return  getList(list, productCounts);
+    }
+
+    private static List<Map<String, Object>> getList(List<Map<String, Object>> list, List<ProductCount> productCounts) {
+        for (ProductCount item : productCounts) {
+            Map<String,Object> map = new HashMap<>();
+            map.put("商品",item.getName());
+            map.put("销售量",item.getNumber());
+            map.put("销售额",item.getPrice());
+            list.add(map);
+        }
+        return list;
+    }
+
 
 }

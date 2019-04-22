@@ -1,6 +1,5 @@
 package com.czxy.back.web;
 
-import com.czxy.back.bean.Category;
 import com.czxy.back.bean.Product;
 import com.czxy.back.service.ProductService;
 import net.sf.json.JSONArray;
@@ -108,29 +107,14 @@ public class ProductAdminController {
     private Map<String,Object> addOrEditProduct(@RequestBody Map map){
         Map<String,Object> modelMap = new HashMap<>();
         boolean result = false;
-        Product product = new Product();
         //将传过来的json字符串转化为json
         JSONObject object = JSONObject.fromObject(map.get("product"));
-        try{
-            product.setName((String)object.get("name"));
-            product.setPrice((Integer)object.get("price"));
-            product.setUnit((String)object.get("unit"));
-            product.setProductDesc((String)object.get("productDesc"));
-            Category category = new Category((Integer)object.get("category"),null);
-            product.setCategory(category);
-            product.setStock((Integer)object.get("stock"));
-            product.setProvide((String)object.get("provide"));
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        System.out.println(object);
-        System.out.println(map.get("addOrEdit"));
+        Product product = (Product) JSONObject.toBean(object,Product.class);
         if((boolean)map.get("addOrEdit")){
             product.setCreateTime(new Date());
             product.setLastEditTime(new Date());
             result = productService.addProduct(product);
         }else{
-            product.setId((Integer)object.get("id"));
             product.setLastEditTime(new Date());
             result = productService.updateProduct(product);
         }
@@ -176,6 +160,12 @@ public class ProductAdminController {
         product.setId(id);
         product.setStatus(status);
         productService.updateProduct(product);
+    }
+
+    @RequestMapping(value = "/getProductCount/{id}", method = RequestMethod.GET)
+    @ResponseBody
+    private List getProductCount(@PathVariable int id){
+        return productService.productCountTopAndEndFiveService(id);
     }
 
 }
