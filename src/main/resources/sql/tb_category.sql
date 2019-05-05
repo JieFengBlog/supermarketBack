@@ -1,3 +1,4 @@
+-- 商品分类表
 create table tb_category
 (
   id          int(10) auto_increment
@@ -5,3 +6,4 @@ create table tb_category
   name        varchar(255) not null,
   create_time datetime     null
 );
+

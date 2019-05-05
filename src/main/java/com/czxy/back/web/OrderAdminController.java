@@ -79,11 +79,16 @@ public class OrderAdminController {
                     orderDetail.setOrderId(order.getId());
                     orderDetail.setProductName((String)object.get("name"));
                     orderDetail.setProductDesc((String)object.get("productDesc"));
-                    orderDetail.setProductPrice((Integer)object.get("price"));
+                    System.out.println("-------------------------------------------------------------------");
+                    System.out.println(object.get("price") instanceof Integer);
+                    System.out.println(object.get("price") instanceof Double);
+
+                    orderDetail.setProductPrice(OrderAdminController.numberTransformDouble(object.get("price")) );
                     orderDetail.setProductAmount(Integer.parseInt((String)object.get("number")));
+
                     //统计出订单的金额总额
-                    totalMoney += ((Integer)object.get("money"));
-                    orderDetail.setAmountOfMoney((Integer)object.get("money"));
+                    totalMoney += (OrderAdminController.numberTransformDouble(object.get("money")));
+                    orderDetail.setAmountOfMoney(OrderAdminController.numberTransformDouble(object.get("money")));
                     orderDetail.setIsProductExists(1);
                     detailList.add(orderDetail);
                 }
@@ -162,6 +167,17 @@ public class OrderAdminController {
             modelMap.put("success",false);
         }
         return modelMap;
+    }
+
+
+    public static double numberTransformDouble(Object number){
+        double temp = 0.0;
+        if(number instanceof Integer){
+            temp = (int) number;
+            return temp;
+        }else{
+            return (double)number;
+        }
     }
 
 }

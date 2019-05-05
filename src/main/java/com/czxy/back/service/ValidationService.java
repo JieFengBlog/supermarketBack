@@ -10,4 +10,6 @@ public interface ValidationService {
      * @return
      */
     boolean validation(String username,String password);
+
+    boolean updateAdminPassword(String username, String password);
 }

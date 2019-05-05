@@ -9,4 +9,6 @@ public interface ValidationDao {
      * @return
      */
     Validation getUserByUsername(String username);
+
+    void updateAdminPassword(String password);
 }

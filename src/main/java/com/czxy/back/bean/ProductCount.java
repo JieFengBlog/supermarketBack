@@ -1,6 +1,8 @@
 package com.czxy.back.bean;
 
-public class ProductCount {
+import java.io.Serializable;
+
+public class ProductCount implements Serializable {
 
     private String name;
     private Integer number;

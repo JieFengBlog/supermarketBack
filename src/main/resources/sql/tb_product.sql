@@ -1,4 +1,4 @@
--- auto-generated definition
+-- 商品表
 create table tb_product
 (
   id             int(10) auto_increment
@@ -9,9 +9,10 @@ create table tb_product
   category_id    int(10)                           not null,
   stock          int(10)      default 0            null,
   provide        varchar(255)                      not null,
-  status         int(1)                            not null comment '0 下架  1 上架',
+  status         int(1)       default 0            null comment '0 下架  1 上架',
   create_time    datetime                          null,
   last_edit_time datetime                          null,
+  unit           varchar(255)                      null,
   constraint tb_product_name_uindex
     unique (name)
 );

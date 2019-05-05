@@ -5,7 +5,6 @@
 
 <mapper namespace="com.czxy.back.dao.UserDao">
 
-    <cache type="org.mybatis.caches.ehcache.EhcacheCache"/>
 
     <select id="getUserById" resultType="user">
         select * from tb_user where id = #{id}

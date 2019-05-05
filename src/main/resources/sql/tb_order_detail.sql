@@ -1,4 +1,4 @@
--- auto-generated definition
+-- 每份订单中的商品详情表
 create table tb_order_detail
 (
   id                int(10) auto_increment
@@ -14,3 +14,5 @@ create table tb_order_detail
   constraint tb_order_detail_tb_order_id_fk
     foreign key (order_id) references tb_order (id)
 );
+
+

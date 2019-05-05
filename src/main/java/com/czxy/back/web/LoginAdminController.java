@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -37,5 +38,18 @@ public class LoginAdminController {
             modelMap.put("errMsg", "请输入正确的用户名或者密码");
         }
         return modelMap;
+    }
+
+
+    @RequestMapping(value = "/changePassword",method = RequestMethod.POST)
+    @ResponseBody
+    private boolean updateAdminPassword(@RequestBody Map map){
+
+        String oldPassword = (String) map.get("oldPassword");
+        String newPassword = (String) map.get("newPassword");
+
+        return  validationService.updateAdminPassword(oldPassword, newPassword);
+
+
     }
 }

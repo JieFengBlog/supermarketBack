@@ -31,4 +31,20 @@ public class ValidationServiceImpl implements ValidationService {
 
         return false;
     }
+
+    @Override
+    public boolean updateAdminPassword(String oldPassword, String newPassword) {
+
+        System.out.println(" oldPassword: " + oldPassword);
+        Validation admin = validationDao.getUserByUsername("admin");
+
+        if(admin.getPassword().equals(oldPassword)){
+            validationDao.updateAdminPassword(newPassword);
+            return true;
+        }else{
+            System.out.println(admin.getPassword());
+            System.out.println("密码错误");
+        }
+        return false;
+    }
 }

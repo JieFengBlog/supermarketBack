@@ -5,8 +5,6 @@
 <mapper namespace="com.czxy.back.dao.ProductDao">
 
 
-    <cache type="org.mybatis.caches.ehcache.EhcacheCache"/>
-
     <!--根据id查询商品信息，这里使用了分布查询-->
     <resultMap id="select_product" type="product">
         <id  column="id" property="id"/>
@@ -137,8 +135,8 @@
 
 
     <select id="productCountTopAndEndFive" resultType="ProductCount">
-    SELECT  product_name as name, SUM(product_amount) AS number ,SUM(product_price * product_amount) as price
-    FROM tb_order_detail GROUP BY product_id order by number
+        SELECT  product_name as name, SUM(product_amount) AS number ,SUM(product_price * product_amount) as price
+        FROM tb_order_detail  where order_id in (select id from tb_order where order_type = 1) GROUP BY product_id order by number
      <if test="_parameter == 1">
          desc
      </if>

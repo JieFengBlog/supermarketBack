@@ -1,4 +1,4 @@
--- auto-generated definition
+-- 订单表
 create table tb_order
 (
   id              int(10) auto_increment
@@ -14,3 +14,6 @@ create table tb_order
   constraint tb_order_order_number_uindex
     unique (order_number)
 );
+
+create index tb_order_tb_user_id_fk
+  on tb_order (user_id);
